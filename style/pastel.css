@@ -1,0 +1,373 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos básicos do corpo */
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #ff3131, #ff914d);
+  color: #ff3131;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  padding-bottom: 250px; /* Espaço para o rodapé fixo */
+  overflow-y: auto; /* Permite a rolagem vertical */
+  height: auto; /* Ajusta a altura conforme o conteúdo */
+}
+
+/* Estilo específico para a cor de fundo da barra de status em dispositivos móveis */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%; /* Quase toda a largura da tela */
+    max-height: 90vh; /* Quase toda a altura da tela */
+  }
+
+  /* Outras customizações para telas menores */
+  h1 {
+    font-size: 1.5rem; /* Ajusta o tamanho do título em dispositivos móveis */
+    margin-bottom: 10px; /* Espaçamento reduzido abaixo do título */
+  }
+
+  .image-button img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .modal-content {
+    width: 90%; /* Ajusta a largura dos modais em telas menores */
+  }
+
+  button.submit {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .ingredient-list {
+    max-height: none; /* Remove a limitação de altura em telas menores */
+    padding: 8px;
+  }
+
+  label {
+    font-size: 0.85rem;
+  }
+
+  label input[type="checkbox"] {
+    transform: scale(0.8);
+  }
+
+  /* Ajustes para o campo de nome em mobile */
+  input[type="text"] {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+
+/* Estilos do cabeçalho */
+header {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px; /* Reduz o espaçamento abaixo do cabeçalho */
+  margin-top: 0;
+  padding-top: 20px; /* Diminui o padding-top para reduzir a altura */
+}
+
+/* Estilo para a imagem do cabeçalho */
+header img {
+  width: 80%; /* Reduz a largura da imagem do cabeçalho */
+  max-width: 300px; /* Define um tamanho máximo menor para a imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  margin: 0 auto;
+  display: block;
+  border-radius: 50%; /* Mantém a imagem redonda */
+}
+
+/* Estilos para o container principal */
+.container {
+  text-align: center;
+  width: 80%;
+  max-width: 600px; /* Define uma largura máxima para o container */
+  height: auto; /* Ajusta a altura do container conforme o conteúdo */
+}
+
+/* Estilos do título */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Estilo das opções de pastéis */
+.pastel-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+}
+
+/* Ajustes para os botões das imagens */
+.image-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.image-button img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.image-button:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos dos modais */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Impede a rolagem da página quando o modal está aberto */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 5px solid #ffffff;
+  border-radius: 50px;
+  width: 80%;
+  max-height: 80vh; /* Limita a altura máxima do conteúdo do modal */
+  overflow-y: auto; /* Adiciona rolagem ao conteúdo do modal se necessário */
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #d3a478; /* Cor dos títulos dos modais */
+}
+
+/* Estilo para o botão de fechar */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilo da barra de ingredientes com rolagem */
+.ingredient-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px; /* Limita a altura da barra de ingredientes */
+  overflow-y: auto; /* Adiciona rolagem vertical à barra de ingredientes */
+  padding: 10px;
+  border-radius: 15px; /* Arredondamento das bordas */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Fundo mais claro com transparência */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais escura para visibilidade */
+}
+
+.ingredient-list h3 {
+  text-transform: uppercase;
+  color: #d3a478; /* Cor dos títulos dos ingredientes */
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.ingredient-list label {
+  text-transform: uppercase; /* Coloca o texto dos ingredientes em maiúsculas */
+  margin-bottom: 5px; /* Espaço entre as opções de ingredientes */
+}
+
+/* Estilo dos rótulos e checkboxes */
+label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #d3a478; /* Cor personalizada para o texto dos ingredientes */
+  margin-bottom: 5px; /* Espaço entre as opções de ingredientes */
+}
+
+label input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(0.9);
+}
+
+input[type="checkbox"] {
+  accent-color: #ff6f61;
+}
+
+/* Estilos dos botões de confirmação */
+button.submit {
+  background-color: #ff6f61;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+}
+
+button.submit:hover {
+  background-color: #ff4c39;
+}
+
+/* Estilo para os itens do carrinho */
+#cartItems {
+  background-color: #d3a478; /* Cor de fundo do contêiner dos itens do carrinho */
+  border: 1px solid #ddd; /* Borda ao redor do contêiner */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Estilo para os itens individuais do carrinho */
+.cart-item {
+  background-color: #ffffff; /* Cor de fundo dos itens */
+  border: 1px solid #ddd; /* Borda ao redor dos itens */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para destaque */
+}
+
+/* Estilo do botão de remover item do carrinho */
+.cart-item .remove-button {
+  background-color: #ff6f61; /* Cor de fundo do botão de remover */
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-item .remove-button:hover {
+  background-color: #ff4c39; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Animação para o modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rodapé fixo no fundo da página */
+footer {
+  position: fixed; /* Corrigido para fixed */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ff4c39; /* Cor de fundo do rodapé, combinando com a página inicial */
+  color: #fff; /* Cor do texto */
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil para destaque */
+  font-size: 0.9rem; /* Tamanho da fonte */
+}
+
+/* Estilo para os parágrafos no rodapé */
+footer p {
+  margin: 5px 0; /* Margem em torno dos parágrafos */
+}
+
+/* Estilo para os links no rodapé */
+footer a {
+  color: #fff; /* Cor dos links */
+  text-decoration: none; /* Remove o sublinhado dos links */
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline; /* Sublinha os links ao passar o mouse */
+}
+
+/* Estilo para os campos de entrada de nome */
+input[type="text"] {
+  width: 100%; /* Faz o input ocupar toda a largura do container */
+  padding: 12px 20px; /* Aumenta o espaço interno para maior altura */
+  font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+  border: 2px solid #ff6f61; /* Borda com cor temática */
+  border-radius: 5px; /* Bordas arredondadas */
+  margin-top: 10px; /* Espaçamento acima do campo */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+/* Estilos do botão "Ver Carrinho" com efeito */
+button#viewCart {
+  background-color: #ff6f61;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transição suave para todas as propriedades */
+  margin-top: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra inicial */
+}
+
+button#viewCart:hover {
+  background-color: #ff4c39; /* Cor de fundo ao passar o mouse */
+  transform: scale(1.05); /* Aumenta levemente o botão */
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3); /* Sombra mais pronunciada */
+}
+
+/* Estilos do botão "Enviar Pedidos" dentro do carrinho */
+button#sendOrder {
+  background-color: #ff6f61;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra inicial */
+}
+
+button#sendOrder:hover {
+  background-color: #ff4c39;
+  transform: scale(1.05); /* Efeito de hover */
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3); /* Sombra mais pronunciada */
+}
