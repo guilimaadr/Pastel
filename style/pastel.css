@@ -372,7 +372,7 @@ button#sendOrder:hover {
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3); /* Sombra mais pronunciada */
 }
 
-/* Estilos do botão "Enviar Pedidos" dentro do carrinho */
+/* Estilos do botão "Total" dentro do carrinho */
 button#cartTotal {
   background-color: #ff6f61;
   border: none;
