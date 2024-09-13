@@ -371,3 +371,24 @@ button#sendOrder:hover {
   transform: scale(1.05); /* Efeito de hover */
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3); /* Sombra mais pronunciada */
 }
+
+/* Estilos do botão "Enviar Pedidos" dentro do carrinho */
+button#cartTotal {
+  background-color: #ff6f61;
+  border: none;
+  color: #fff;
+  padding: 8px 16px; /* Tamanho reduzido */
+  font-size: 0.9rem; /* Fonte um pouco menor */
+  border-radius: 20px; /* Borda menos arredondada */
+  cursor: pointer;
+  transition: all 0.2s ease; /* Transição mais rápida */
+  margin-top: 15px;
+  width: 50%; /* Botão um pouco menor na largura */
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Sombra mais sutil */
+}
+
+button#cartTotal:hover {
+  background-color: #ff4c39;
+  transform: scale(1); /* Efeito de hover mais suave */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra mais leve no hover */
+}
