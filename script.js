@@ -1,3 +1,12 @@
+// Capitalize the first letter of each word in a string
+function capitalizeFirstLetter(text) {
+  return text
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 // Open modal function with smooth animation
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
@@ -46,16 +55,22 @@ function submitIngredients(
   // Get selected options
   const selectedSabores = Array.from(sabores)
     .filter((item) => item.checked)
-    .map((item) => item.value);
+    .map((item) => capitalizeFirstLetter(item.value.toLowerCase()));
   const selectedComplementos = Array.from(complementos)
     .filter((item) => item.checked)
-    .map((item) => item.value);
+    .map((item) => capitalizeFirstLetter(item.value.toLowerCase()));
   const selectedMolhos = Array.from(molhos)
     .filter((item) => item.checked)
-    .map((item) => item.value);
+    .map((item) => capitalizeFirstLetter(item.value.toLowerCase()));
 
   // Add to cart with price
-  addToCart(nome, selectedSabores, selectedComplementos, selectedMolhos, price);
+  addToCart(
+    capitalizeFirstLetter(nome.toLowerCase()),
+    selectedSabores,
+    selectedComplementos,
+    selectedMolhos,
+    price
+  );
 
   // Close modal after submission
   closeModal(`modal${nomeId.charAt(nomeId.length - 1)}`);
@@ -94,24 +109,16 @@ function addToCart(
 
   cartItem.id = `item-${itemId}`;
   cartItem.innerHTML = `
-    <h3>${nome.toUpperCase()}</h3>
-    ${
-      sabores.length > 0
-        ? `<p>Sabores: ${sabores.join(", ").toUpperCase()}</p>`
-        : ""
-    }
+    <h3>${capitalizeFirstLetter(nome)}</h3>
+    ${sabores.length > 0 ? `<p>SABORES: ${sabores.join(", ")}</p>` : ""}
     ${
       complementos.length > 0
-        ? `<p>Complementos: ${complementos.join(", ").toUpperCase()}</p>`
+        ? `<p>COMPLEMENTOS: ${complementos.join(", ")}</p>`
         : ""
     }
-    ${
-      molhos.length > 0
-        ? `<p>Molhos: ${molhos.join(", ").toUpperCase()}</p>`
-        : ""
-    }
-    <p>Preço: R$${price.toFixed(2)}</p>
-    <button onclick="removeFromCart(${itemId})" class="remove-button">Remover</button>
+    ${molhos.length > 0 ? `<p>MOLHOS: ${molhos.join(", ")}</p>` : ""}
+    <p>PREÇO: R$${price.toFixed(2)}</p>
+    <button onclick="removeFromCart(${itemId})" class="remove-button">REMOVER</button>
   `;
 
   // Set price data attribute
@@ -172,7 +179,7 @@ function updateCartTotal() {
     total += price;
   });
 
-  document.getElementById("cartTotal").innerText = `Total: R$${total.toFixed(
+  document.getElementById("cartTotal").innerText = `TOTAL: R$${total.toFixed(
     2
   )}`;
 }
@@ -185,7 +192,7 @@ function submitBeverages(beverageName) {
   const selectedBeverages = Array.from(bebidas)
     .filter((item) => item.checked)
     .map((item) => ({
-      name: item.value,
+      name: capitalizeFirstLetter(item.value.toLowerCase()),
       price: parseFloat(item.getAttribute("data-price")),
     }));
 
@@ -213,13 +220,14 @@ function sendOrder() {
     return;
   }
 
-  let message = "PEDIDOS:\n\n";
+  let message = "Olá 🤗, Segue pedido:\n\n"; // Mensagem de introdução
+  message += "⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘\n\n"; // Mensagem adicional
 
   // Process all cart items (including pastéis and beverages)
   cartItems.forEach((item) => {
-    const name = item.querySelector("h3").innerText;
+    const name = item.querySelector("h3").innerText.toUpperCase(); // Nome em maiúsculas
     const priceElement = item.querySelector("p:last-of-type");
-    const price = priceElement.innerText.replace("Preço: R$", "");
+    const price = priceElement.innerText.replace("PREÇO: R$", "");
 
     const sabores = item.querySelector("p:nth-of-type(1)")?.innerText || "";
     const complementos =
@@ -228,22 +236,31 @@ function sendOrder() {
 
     if (item.classList.contains("cart-item-beverage")) {
       // If item is a beverage
-      message += `BEBIDA: ${name.toUpperCase()}\nPREÇO: R$${parseFloat(
-        price
-      ).toFixed(2)}\n\n`;
+      message += `🥤BEBIDA: ${name}\nPREÇO: R$${parseFloat(price).toFixed(
+        2
+      )}\n\n⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘\n\n`;
     } else {
       // If item is a pastel
-      message += `NOME: ${name.toUpperCase()}\n\n${sabores.toUpperCase()}\n${complementos.toUpperCase()}\n${molhos.toUpperCase()}\nPREÇO: R$${parseFloat(
-        price
-      ).toFixed(2)}\n\n`;
+      let itemDetails = `🟢NOME: ${name}`;
+      if (sabores) itemDetails += `\n\n📌${sabores}`;
+      if (complementos) itemDetails += `\n\n📌${complementos}`;
+      if (molhos) itemDetails += `\n\n📌${molhos}`;
+      itemDetails += `\n\n💵PREÇO: R$${parseFloat(price).toFixed(2)}`;
+      message += `${itemDetails}\n\n⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘\n\n`;
     }
   });
+
+  // Include additional message before total price
+  message += "⚠️ Confirme se esta tudo Correto ⚠️\n\n"; // Instruções adicionais
 
   // Include the total price in the message
   const total = document
     .getElementById("cartTotal")
-    .innerText.replace("Total: R$", "");
-  message += `TOTAL: R$${parseFloat(total).toFixed(2)}\n`;
+    .innerText.replace("TOTAL: R$", "");
+  message += `💰TOTAL: R$${parseFloat(total).toFixed(2)}\n\n`;
+
+  // Include final message or thank you note
+  message += "🥰 Cantinho Do Pastel Agradece! 🥰\n"; // Informação extra
 
   // Replace the phone number with your WhatsApp number
   const phoneNumber = "5581994956795"; // Your WhatsApp number
@@ -251,9 +268,9 @@ function sendOrder() {
     message
   )}`;
 
-  // Open WhatsApp with the message
+  // Open WhatsApp with the composed message
   window.open(url, "_blank");
 
-  // Clear cart after sending the order
+  // Clear the cart after sending the order
   clearCart();
 }
