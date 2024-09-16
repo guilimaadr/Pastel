@@ -236,7 +236,7 @@ function sendOrder() {
 
     if (item.classList.contains("cart-item-beverage")) {
       // If item is a beverage
-      message += `🥤BEBIDA: ${name}\nPREÇO: R$${parseFloat(price).toFixed(
+      message += `🥤BEBIDA: ${name}\n💵PREÇO: R$${parseFloat(price).toFixed(
         2
       )}\n\n⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘\n\n`;
     } else {
